@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <title>Matches Deriv</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">LIVE MARKET DATA · STATISTICAL VIEW</p>
+      <h1>Matches Deriv</h1>
+      <p class="subhead">Live last-digit frequency from Deriv tick quotes</p>
+    </div>
+    <div class="status-wrap"><span id="statusDot" class="status-dot"></span><span id="statusText">Not connected</span></div>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <div class="field">
+        <label for="symbol">Market</label>
+        <select id="symbol">
+          <option value="R_10">Volatility 10 Index</option>
+          <option value="R_25">Volatility 25 Index</option>
+          <option value="R_50" selected>Volatility 50 Index</option>
+          <option value="R_75">Volatility 75 Index</option>
+          <option value="R_100">Volatility 100 Index</option>
+          <option value="1HZ10V">Volatility 10 (1s) Index</option>
+          <option value="1HZ25V">Volatility 25 (1s) Index</option>
+          <option value="1HZ50V">Volatility 50 (1s) Index</option>
+          <option value="1HZ75V">Volatility 75 (1s) Index</option>
+          <option value="1HZ100V">Volatility 100 (1s) Index</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="tickCount">Historical ticks to analyze</label>
+        <select id="tickCount">
+          <option>25</option><option selected>50</option><option>100</option>
+          <option>250</option><option>500</option><option>1000</option>
+        </select>
+      </div>
+      <div class="actions">
+        <button id="connectBtn" class="primary">Connect / Start</button>
+        <button id="stopBtn" class="secondary" disabled>Stop</button>
+      </div>
+      <p class="note">This dashboard reads public tick data only. It does not place trades or ask for an account token.</p>
+    </section>
+
+    <section class="stats-grid">
+      <article class="panel stat"><span class="stat-label">Latest quote</span><strong id="quote">—</strong><span class="muted">Most recent tick</span></article>
+      <article class="panel stat"><span class="stat-label">Last digit</span><strong id="lastDigit">—</strong><span class="muted">Final displayed decimal digit</span></article>
+      <article class="panel stat"><span class="stat-label">Ticks collected</span><strong id="collected">0</strong><span class="muted">Current session</span></article>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><p class="eyebrow">FREQUENCY ANALYSIS</p><h2>Digit frequency</h2></div><span id="sampleLabel" class="pill">Waiting for ticks</span></div>
+      <p class="muted">Digits are ranked by how often they appeared in the selected recent sample.</p>
+      <div id="digitGrid" class="digit-grid" aria-live="polite"></div>
+      <div class="result-row">
+        <div><span class="stat-label">Most frequent digit</span><strong id="topDigit">—</strong></div>
+        <div><span class="stat-label">Observed frequency</span><strong id="topPercent">—</strong></div>
+      </div>
+      <p class="note">Past frequency is descriptive, not a prediction. It cannot guarantee which digit will appear next.</p>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading"><div><p class="eyebrow">RECENT MARKET ACTIVITY</p><h2>Historical ticks</h2></div><span id="historyLabel" class="pill">0 shown</span></div>
+      <div id="history" class="history-list"><p class="muted">Connect to begin receiving live ticks.</p></div>
+    </section>
+  </main>
+  <footer>Matches Deriv · Public market data display · No trades are placed by this page.</footer>
+  <script src="app.js"></script>
+</body>
+</html>
